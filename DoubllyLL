@@ -1,0 +1,58 @@
+class Node:
+    def __init__(self,data,n=None,p=None):
+        self.data=data
+        self.prev=p
+        self.next=n
+class DoublyLinkedList:
+    def __init__(self):
+        self.head=None
+        self.size=0
+
+    def add(self,data):
+        node=Node(data,self.head)
+        if self.head:
+            self.head.prev=node
+        self.head=node
+        self.size+=1
+
+    def getsize(self):
+        print(self.size)
+
+    def print(self):
+        itr=self.head
+        s=''
+        while(itr):
+            s+=str(itr.data)+'<->'
+            itr=itr.next
+        print(s)
+
+    def rem(self,data):
+        itr=self.head
+        while(itr):
+            if itr.data==data:
+                p=itr.prev
+                n=itr.next
+                if itr.prev:
+                    itr.prev.next=n
+                else:
+                    self.head=itr.next
+                    itr.next.prev=None
+                if itr.next:
+                    itr.next.prev=p
+                else:
+                    itr.prev.next=None
+                self.size-=1
+                break
+            itr=itr.next
+
+if __name__ == '__main__':
+    dll=DoublyLinkedList()
+    dll.add(2001)
+    dll.add('06')
+    dll.add('Rock')
+    dll.add(15)
+    dll.getsize()
+    dll.print()
+    dll.rem('06')
+    dll.print()
+    dll.getsize()
