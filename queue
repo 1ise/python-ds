@@ -1,0 +1,19 @@
+from collections import deque
+class Queue:
+    def __init__(self):
+        self.q=deque()
+    def enq(self,data):
+        self.q.appendleft(data)
+    def deq(self):
+        self.q.pop()
+    def isempty(self):
+        return len(self.q)==0
+if __name__=='__main__':
+    qu=Queue()
+    qu.enq(15)
+    qu.enq(5)
+    qu.enq(25)
+    print(qu.q)
+    qu.deq()
+    print(qu.isempty())
+    print(qu.q)
