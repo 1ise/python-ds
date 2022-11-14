@@ -1,0 +1,57 @@
+class TreeNode:
+    def __init__(self,data):
+        self.data=data
+        self.children=[]
+        self.parent=None
+
+    def ac(self,child):
+        child.parent=self
+        self.children.append(child)
+
+    def gl(self):
+        p=self.parent
+        c=0
+        while(p):
+            c+=1
+            p=p.parent
+        return c
+
+    def pt(self):
+        space='   '*self.gl()
+        print(space+self.data)
+        if self.children:
+            for i in self.children:
+                i.pt()
+    def rn(self,data):
+            #self.parent = None
+        if self.data==data:
+            self.parent.children.remove(self)
+        for i in self.children:
+                i.rn(data)
+
+def buildtree():
+    t = TreeNode
+    root = t('Electronics')
+
+    tv = t('TV')
+    tv.ac(t('Samsung'))
+    tv.ac(t('LG'))
+
+    pc = t('PC')
+    pc.ac(t('DELL'))
+    pc.ac(t('HP'))
+
+    ph = t('SMARTPHONE')
+    ph.ac(t('REALME'))
+    ph.ac(t('REDMI'))
+
+    root.ac(tv)
+    root.ac(pc)
+    root.ac(ph)
+    root.pt()
+    root.rn('HP')
+    pc.ac(t('Asus'))
+    root.pt()
+
+if __name__ == '__main__':
+    buildtree()
