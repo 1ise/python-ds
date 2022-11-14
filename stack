@@ -1,0 +1,28 @@
+from collections import deque
+class Stack:
+    def __init__(self):
+        self.st=deque()
+        self.st1=deque()
+    def push(self,data):
+        self.st.append((data))
+    def pop(self):
+        self.st.pop()
+    def peek(self):
+        return self.st[-1]
+    def conq(self):
+        self.st1=self.st
+        self.st=[]
+        for i in self.st1:
+            self.push(i)
+
+if __name__=='__main__':
+    s=Stack()
+    s.push(15)
+    s.push(30)
+    s.push((20))
+    print(s.st)
+    s.pop()
+    print(s.st)
+    s.conq()
+    s.pop()
+    print(s.st)
