@@ -1,0 +1,78 @@
+class bstnode:
+    def __init__(self,data):
+        self.left=None
+        self.data=data
+        self.right=None
+    def ac(self,data):
+        if self.data==data:
+            return
+        if self.data>data:
+            if self.left:
+                self.left.ac(data)
+            else:
+                self.left=bstnode(data)
+        if self.data<data:
+            if self.right:
+                self.right.ac(data)
+            else:
+                self.right=bstnode(data)
+    def iot(self):
+        l=[]
+        if self.left:
+            l+=self.left.iot()
+        l.append(self.data)
+        if self.right:
+            l+=self.right.iot()
+        return l
+    def serch(self,data):
+        if self.data==data:
+            return True
+        if self.data>data:
+            if self.left:
+                return self.left.serch(data)
+            else:
+                return False
+        else:
+            if self.right:
+                return self.right.serch(data)
+            else:
+                return False
+    def mi(self):
+        if self.left:
+            return self.left.mi()
+        else:
+            return self.data
+    def ma(self):
+        if self.right:
+            return self.right.ma()
+        else:
+            return self.data
+    def postot(self):
+        l=[]
+        if self.left:
+            l+=self.left.postot()
+        if self.right:
+            l+=self.right.postot()
+        l.append(self.data)
+        return l
+    def preot(self):
+        l=[]
+        l.append(self.data)
+        if self.left:
+            l+=self.left.preot()
+        if self.right:
+            l+=self.right.preot()
+        return l
+def buildtree(a):
+    root=bstnode(a[0])
+    for i in range(1,len(a)):
+        root.ac(a[i])
+    print(root.iot())
+    print(root.preot())
+    print(root.postot())
+    print(root.serch('Japan'))
+    print(root.mi())
+    print(root.ma())
+if __name__ == '__main__':
+    a=['India','Usa','Russia','England','Singapore','Japan']
+    buildtree(a)
